@@ -1,0 +1,14 @@
+/**
+ * Google Stitch HTML export archive.
+ *
+ * UI is implemented in:
+ * - pages/WalletLoginPage.jsx
+ * - pages/DashboardPage.jsx
+ * - pages/CreateRecordPage.jsx
+ * - pages/RecordDetailPage.jsx
+ *
+ * Full static reference: frontend/reference/stitch-export.html
+ */
+export default function StitchReferenceNotice() {
+  return null
+}

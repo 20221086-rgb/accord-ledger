@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  background-color: #faf9f5;
+  color: #1b1c1a;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@layer components {
+  .stitch-card {
+    @apply bg-ledger-paper border border-outline-variant/40 rounded-lg p-gutter shadow-sm;
+  }
+
+  .stitch-chip {
+    @apply relative z-10 cursor-pointer select-none touch-manipulation px-3 py-1.5 rounded-full border font-label-caps text-label-caps transition-all duration-150;
+  }
+
+  .stitch-chip-active {
+    @apply bg-secondary-container border-secondary text-on-secondary-container ring-2 ring-secondary/25 shadow-sm;
+  }
+
+  .stitch-chip-inactive {
+    @apply border-secondary/40 text-secondary bg-surface hover:bg-secondary-container/50 hover:border-secondary/60;
+  }
+
+  .stitch-input {
+    @apply w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-3 font-body-md text-on-surface;
+  }
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.timeline-spine {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #655e48;
+  opacity: 0.2;
+}
+
+@media (min-width: 768px) {
+  .timeline-spine {
+    left: 48px;
+  }
+}
+
+.hash-pattern {
+  background-color: #faf9f5;
+  background-image: radial-gradient(#d8d2c2 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+.ledger-card::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #171e1e;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .ledger-card::before {
+    left: 43px;
+  }
+}
+
+.correction-card::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #faf9f5;
+  border: 2px solid #b4846c;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .correction-card::before {
+    left: 43px;
+  }
+}
+
+button,
+a {
+  font: inherit;
+}
