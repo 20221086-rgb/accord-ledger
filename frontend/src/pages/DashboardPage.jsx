@@ -25,7 +25,7 @@ export default function DashboardPage() {
           creatorWallet: isAuthenticated ? walletAddress : undefined,
         })
         if (!cancelled) {
-          setRecords(data.records || [])
+          setRecords(data?.records ?? [])
         }
       } catch (err) {
         if (!cancelled) setError(err.message)

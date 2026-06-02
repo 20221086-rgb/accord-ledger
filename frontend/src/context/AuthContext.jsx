@@ -67,13 +67,29 @@ export function AuthProvider({ children }) {
     }
 
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-    const address = accounts[0]
-    const { message } = await fetchLoginMessage(address)
+    const address = accounts?.[0]
+    if (!address) {
+      throw new Error('MetaMask 지갑 주소를 가져오지 못했습니다.')
+    }
+
+    const loginPayload = await fetchLoginMessage(address)
+    const message = loginPayload?.message
+    if (!message) {
+      throw new Error('서버에서 로그인 메시지를 받지 못했습니다.')
+    }
+
     const signature = await window.ethereum.request({
       method: 'personal_sign',
       params: [message, address],
     })
+    if (!signature) {
+      throw new Error('MetaMask 서명이 취소되었거나 비어 있습니다.')
+    }
+
     const data = await loginWithMetaMask(address, signature, message)
+    if (!data?.token || !data?.wallet_address) {
+      throw new Error('로그인 응답이 올바르지 않습니다.')
+    }
     persistSession(data.token, data.wallet_address)
     await refreshUser()
     return data
@@ -83,8 +99,16 @@ export function AuthProvider({ children }) {
     setError(null)
     const address =
       walletAddress || '0x1234567890123456789012345678901234567890'
-    const { message } = await fetchLoginMessage(address)
+    const loginPayload = await fetchLoginMessage(address)
+    const message = loginPayload?.message
+    if (!message) {
+      throw new Error('서버에서 로그인 메시지를 받지 못했습니다.')
+    }
+
     const data = await loginWithMetaMask(address, 'test-signature', message)
+    if (!data?.token || !data?.wallet_address) {
+      throw new Error('로그인 응답이 올바르지 않습니다.')
+    }
     persistSession(data.token, data.wallet_address)
     await refreshUser()
     return data

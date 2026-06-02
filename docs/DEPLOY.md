@@ -43,7 +43,7 @@ pytest tests/ -q
    https://your-app.vercel.app
    ```
 5. Deploy 완료 후 API URL 확인:  
-   `https://accord-ledger-api.onrender.com`
+   `https://accord-ledger-2.onrender.com`
 
 ### B. Web Service만 (SQLite, 빠른 데모 — 재배포 시 DB 초기화 가능)
 
